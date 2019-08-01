@@ -26,7 +26,7 @@ public class Nominee {
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="Customer_policy_id")
-	private CustomerPolicy CustomerPolicyId;
+	private CustomerPolicy customerPolicyId;
 	
 	@Column(name="nominee_name")	
 	private String nomineeName;

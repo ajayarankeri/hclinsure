@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.hclinsure.dto.CustomerPolicyDto;
-import com.hcl.hclinsure.exception.NoOrderFoundException;
 import com.hcl.hclinsure.exception.ResourceNotFoundException;
 import com.hcl.hclinsure.service.PolicyService;
 import com.hcl.hclinsure.serviceimpl.CustomerPolicyServiceImpl;
@@ -31,7 +29,7 @@ public class PolicyController {
 	@Autowired
 	CustomerPolicyServiceImpl customerServicePolicyImpl;
 	
-	@RequestMapping(value = "/statement/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
+	@GetMapping(value = "/statement/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> policiesReport(@PathVariable long id) {
 
         List<CustomerPolicyDto> list = customerServicePolicyImpl.getCustomerPolicyList(id);
@@ -60,7 +58,7 @@ public class PolicyController {
 	}
 	
 	@GetMapping("/all")
-	public ResponseEntity<Object> policyList() throws ResourceNotFoundException, NoOrderFoundException {
+	public ResponseEntity<Object> policyList() throws ResourceNotFoundException {
 		return new ResponseEntity<>(policyService.policyList(),HttpStatus.OK);	
         }
 	

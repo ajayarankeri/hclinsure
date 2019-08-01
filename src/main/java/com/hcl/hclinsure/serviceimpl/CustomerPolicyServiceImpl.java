@@ -91,8 +91,7 @@ public class CustomerPolicyServiceImpl implements CustomerPolicyService {
 		            document.close();
 
 		        } catch (DocumentException ex) {
-
-		           
+		           ex.getStackTrace();
 		        }
 
 		        return new ByteArrayInputStream(out.toByteArray());
@@ -100,7 +99,6 @@ public class CustomerPolicyServiceImpl implements CustomerPolicyService {
 
 	@Override
 	public List<CustomerPolicyDto> getCustomerPolicyList(long id) {
-		// TODO Auto-generated method stub
 		return reop.findAllPolicies(id);
 	}
 
