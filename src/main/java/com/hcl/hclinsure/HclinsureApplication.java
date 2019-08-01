@@ -9,5 +9,5 @@ public class HclinsureApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HclinsureApplication.class, args);
 	}
-
+ 
 }
