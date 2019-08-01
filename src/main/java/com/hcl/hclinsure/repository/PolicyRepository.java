@@ -26,7 +26,7 @@ public interface PolicyRepository extends JpaRepository<Policy, Long>{
 	
 	
 	
-	@Query(value="select p.policy_id,IFNULL(count,0) as count ,IFNULL(percentage,0) as percentage from (\r\n" + 
+	@Query(value="select p.policy_id,p.policy_name,IFNULL(count,0) as count ,IFNULL(percentage,0) as percentage from (\r\n" + 
 			"SELECT cp.policy_id,count(cp.policy_id) as count,IFNULL((count(cp.policy_id)/t.total)*100,0) as percentage FROM hclinsure.customer_policy  cp\r\n" + 
 			"cross join (select count(*) as total from hclinsure.customer_policy ct\r\n" + 
 			"WHERE ct.policy_start_date >= DATE(NOW()) - INTERVAL 7 DAY\r\n" + 
@@ -39,7 +39,7 @@ public interface PolicyRepository extends JpaRepository<Policy, Long>{
 			"",nativeQuery = true)
 	public List<List<?>> findAnalysisReportWeekly();
 	
-	@Query(value="select p.policy_id,IFNULL(count,0) as count ,IFNULL(percentage,0) as percentage from (\r\n" + 
+	@Query(value="select p.policy_id,p.policy_name,IFNULL(count,0) as count ,IFNULL(percentage,0) as percentage from (\r\n" + 
 			"SELECT cp.policy_id,count(cp.policy_id) as count,IFNULL((count(cp.policy_id)/t.total)*100,0) as percentage FROM hclinsure.customer_policy  cp\r\n" + 
 			"cross join (select count(*) as total from hclinsure.customer_policy ct\r\n" + 
 			"WHERE YEAR(ct.policy_start_date) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)\r\n" + 
@@ -54,7 +54,7 @@ public interface PolicyRepository extends JpaRepository<Policy, Long>{
 			"",nativeQuery = true)
 	public List<List<?>> findAnalysisReportMonthly();
 
-	@Query(value="select p.policy_id,IFNULL(count,0) as count ,IFNULL(percentage,0) as percentage from (\r\n" + 
+	@Query(value="select p.policy_id,p.policy_name,IFNULL(count,0) as count ,IFNULL(percentage,0) as percentage from (\r\n" + 
 			"SELECT cp.policy_id,count(cp.policy_id) as count,IFNULL((count(cp.policy_id)/t.total)*100,0) as percentage FROM hclinsure.customer_policy  cp\r\n" + 
 			"cross join (select count(*) as total from hclinsure.customer_policy ct\r\n" + 
 			") t\r\n" + 

@@ -112,9 +112,10 @@ public class PolicyServiceImpl implements PolicyService{
 
 		for (List<?> objs : analysisReport) {
 			reportDto = new ReportDto();
-			reportDto.setPolicyId(String.valueOf(objs.get(0)));
-			reportDto.setPolicyCount(String.valueOf(objs.get(1)));
-			reportDto.setPolicyPercentage(String.valueOf(objs.get(2)));
+			reportDto.setPolicyId(Integer.parseInt(String.valueOf(objs.get(0))));
+			reportDto.setPolicyName(String.valueOf(objs.get(1)));
+			reportDto.setPolicyCount(Integer.parseInt(String.valueOf(objs.get(2))));
+			reportDto.setPolicyPercentage(Double.parseDouble(String.valueOf(objs.get(3))));
 			reportDtos.add(reportDto);
 		}  
 		

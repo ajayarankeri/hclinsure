@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class ReportDto {
 
-	private String policyId;
-	private String policyCount;
-	private String policyPercentage;
+	private int policyId;
+	private String policyName;
+	private int policyCount;
+	private double policyPercentage;
 }
