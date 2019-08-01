@@ -53,15 +53,5 @@ public class CustomerPolicy {
 	
 	@Column(name="terms_and_condition_status")
 	private int termsAndConditionStatus;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 }

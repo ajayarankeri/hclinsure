@@ -1,14 +1,18 @@
 package com.hcl.hclinsure.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+import com.hcl.hclinsure.dto.ReportDto;
 import com.hcl.hclinsure.dto.ResponseDto;
 import com.hcl.hclinsure.exception.ResourceNotFoundException;
 
 
-@Service
+@Component
 public interface PolicyService  {
 	
+	public List<ReportDto> analysisReport(String type) throws ResourceNotFoundException;
 	
 	ResponseDto  policyList() throws ResourceNotFoundException;
 
