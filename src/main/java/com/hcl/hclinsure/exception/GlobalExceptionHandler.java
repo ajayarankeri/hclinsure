@@ -36,5 +36,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	        return new ResponseEntity<>(new ErrorResponse("Server Error", details,Integer.toString(301)), HttpStatus.NOT_FOUND);
 	    }
 	
+	@ExceptionHandler(NotCorrectInformationException.class)
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	    public final ResponseEntity<ErrorResponse> handleResourceNotFoundException(NotCorrectInformationException ex, WebRequest request) {   
+		 List<String> details = new ArrayList<>();
+	        details.add(ex.getMessage());	        
+	        return new ResponseEntity<>(new ErrorResponse("Server Error", details,Integer.toString(301)), HttpStatus.NOT_FOUND);
+	    }
+	
 	
 }
