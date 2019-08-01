@@ -65,7 +65,7 @@ public class PolicyController {
         }
 	
 	@GetMapping("/analysis")
-	public ResponseEntity<Object> analysis(@RequestParam(defaultValue = "weekly") String type) throws ResourceNotFoundException {
+	public ResponseEntity<Object> analysis(@RequestParam(defaultValue = "All") String type) throws ResourceNotFoundException {
 		return new ResponseEntity<>(policyService.analysisReport(type),HttpStatus.OK);
 		
 	}

@@ -37,7 +37,7 @@ public interface PolicyRepository extends JpaRepository<Policy, Long>{
 			"hclinsure.policy p\r\n" + 
 			"on p.policy_id=a.policy_id\r\n" + 
 			"",nativeQuery = true)
-	public List<List<?>> findAnalysisReport();
+	public List<List<?>> findAnalysisReportWeekly();
 	
 	@Query(value="select p.policy_id,IFNULL(count,0) as count ,IFNULL(percentage,0) as percentage from (\r\n" + 
 			"SELECT cp.policy_id,count(cp.policy_id) as count,IFNULL((count(cp.policy_id)/t.total)*100,0) as percentage FROM hclinsure.customer_policy  cp\r\n" + 
@@ -53,4 +53,15 @@ public interface PolicyRepository extends JpaRepository<Policy, Long>{
 			"on p.policy_id=a.policy_id\r\n" + 
 			"",nativeQuery = true)
 	public List<List<?>> findAnalysisReportMonthly();
+
+	@Query(value="select p.policy_id,IFNULL(count,0) as count ,IFNULL(percentage,0) as percentage from (\r\n" + 
+			"SELECT cp.policy_id,count(cp.policy_id) as count,IFNULL((count(cp.policy_id)/t.total)*100,0) as percentage FROM hclinsure.customer_policy  cp\r\n" + 
+			"cross join (select count(*) as total from hclinsure.customer_policy ct\r\n" + 
+			") t\r\n" + 
+			"group by cp.policy_id ) as a\r\n" + 
+			"right join\r\n" + 
+			"hclinsure.policy p\r\n" + 
+			"on p.policy_id=a.policy_id\r\n" + 
+			"",nativeQuery = true)
+	public List<List<?>> findAnalysisReport();
 }

@@ -44,9 +44,11 @@ public class PolicyServiceImpl implements PolicyService{
 		ReportDto reportDto = null;
 		List<ReportDto> reportDtos = new ArrayList<>();
 		if(type.equals("weekly"))
-		analysisReport = policyRepository.findAnalysisReport();
+		analysisReport = policyRepository.findAnalysisReportWeekly();
 		else if (type.equals("monthly")) {
 		analysisReport = policyRepository.findAnalysisReportMonthly();	
+		}else {
+		analysisReport = policyRepository.findAnalysisReport();
 		}
 
 		for (List<?> objs : analysisReport) {
