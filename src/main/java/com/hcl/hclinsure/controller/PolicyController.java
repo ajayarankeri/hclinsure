@@ -19,8 +19,7 @@ import com.hcl.hclinsure.service.PolicyService;
 public class PolicyController {
 	
 	@Autowired
-	PolicyService policyService;
-	
+	PolicyService policyService;	
 	
 	@GetMapping("/policy/{policyId}")
 	public ResponseEntity<Object> getPolicyDetails(@PathVariable("policyId") Long policyId) throws ResourceNotFoundException {
@@ -29,7 +28,6 @@ public class PolicyController {
 		
 	}
 	
-
 	@GetMapping("/all")
 	public ResponseEntity<Object> policyList() throws ResourceNotFoundException, NoOrderFoundException {
 		return new ResponseEntity<>(policyService.policyList(),HttpStatus.OK);

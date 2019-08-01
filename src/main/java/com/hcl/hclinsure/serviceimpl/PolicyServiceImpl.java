@@ -25,14 +25,12 @@ public class PolicyServiceImpl implements PolicyService{
 		return new ResponseDto("sucess", 200, policyDetails);
 	}
 
-
 	@Override
 	public ResponseDto policyList() throws ResourceNotFoundException {
 	 List<Policy> policyList =policyRepository.findAll(); 
 	 if(policyList.isEmpty()) {
 	    	throw new ResourceNotFoundException("No policy list result found");
-	    }
-		
+	    }		
 		return  new ResponseDto("sucess", 200 , policyList);
 	}
 	
