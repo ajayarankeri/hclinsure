@@ -1,10 +1,12 @@
 package com.hcl.hclinsure.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.hcl.hclinsure.dto.ReportDto;
 import com.hcl.hclinsure.dto.ResponseDto;
 import com.hcl.hclinsure.entity.Policy;
 import com.hcl.hclinsure.exception.ResourceNotFoundException;
@@ -35,6 +37,27 @@ public class PolicyServiceImpl implements PolicyService{
 		
 		return  new ResponseDto("sucess", 200 , policyList);
 	}
+	
+	@Override
+	public List<ReportDto> analysisReport(String type) throws ResourceNotFoundException {
+	
+		
+		List<List<?>> analysisReport = null;
+		ReportDto reportDto = null;
+		List<ReportDto> reportDtos = new ArrayList<>();
+		analysisReport = policyRepository.findAnalysisReport();
+
+		for (List<?> objs : analysisReport) {
+			reportDto = new ReportDto();
+			reportDto.setPolicyCount(String.valueOf(objs.get(0)));
+			reportDto.setPolicyId(String.valueOf(objs.get(1)));
+			reportDto.setPolicyPercentage(String.valueOf(objs.get(2)));
+			reportDtos.add(reportDto);
+		}  
+		
+		return reportDtos;
+	}
+
 	
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.hclinsure.dto.CustomerPolicyDto;
@@ -64,5 +65,11 @@ public class PolicyController {
 	public ResponseEntity<Object> policyList() throws ResourceNotFoundException, NoOrderFoundException {
 		return new ResponseEntity<>(policyService.policyList(),HttpStatus.OK);	
         }
+	
+	@GetMapping("/analysis")
+	public ResponseEntity<Object> analysis(@RequestParam(defaultValue = "weekly") String type) throws ResourceNotFoundException {
+		return new ResponseEntity<>(policyService.analysisReport(type),HttpStatus.OK);
+		
+	}
 	
 }
