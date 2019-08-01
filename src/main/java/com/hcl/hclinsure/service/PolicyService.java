@@ -1,10 +1,6 @@
 package com.hcl.hclinsure.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
-
-import com.hcl.hclinsure.entity.Policy;
 
 import com.hcl.hclinsure.dto.ResponseDto;
 import com.hcl.hclinsure.exception.ResourceNotFoundException;
@@ -14,7 +10,7 @@ import com.hcl.hclinsure.exception.ResourceNotFoundException;
 public interface PolicyService  {
 	
 	
-	 public List<Policy> policyList();
+	ResponseDto  policyList() throws ResourceNotFoundException;
 
 	ResponseDto getPolicyDetails(Long policyId) throws ResourceNotFoundException;
 
