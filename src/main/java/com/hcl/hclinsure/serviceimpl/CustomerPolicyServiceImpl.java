@@ -2,19 +2,14 @@ package com.hcl.hclinsure.serviceimpl;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hcl.hclinsure.dto.CustomerPolicyDto;
-import com.hcl.hclinsure.entity.CustomerPolicy;
 import com.hcl.hclinsure.repository.CustomerPolicyRepository;
 import com.hcl.hclinsure.service.CustomerPolicyService;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -96,8 +91,7 @@ public class CustomerPolicyServiceImpl implements CustomerPolicyService {
 		            document.close();
 
 		        } catch (DocumentException ex) {
-
-		           
+		           ex.getStackTrace();
 		        }
 
 		        return new ByteArrayInputStream(out.toByteArray());
@@ -105,7 +99,6 @@ public class CustomerPolicyServiceImpl implements CustomerPolicyService {
 
 	@Override
 	public List<CustomerPolicyDto> getCustomerPolicyList(long id) {
-		// TODO Auto-generated method stub
 		return reop.findAllPolicies(id);
 	}
 

@@ -23,7 +23,7 @@ public class CustomerPolicy {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="Customer_policy_id")
-	private Long CustomerPolicyId;
+	private Long customerPolicyId;
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="policy_id")
