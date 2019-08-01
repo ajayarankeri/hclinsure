@@ -43,12 +43,16 @@ public class PolicyServiceImpl implements PolicyService{
 		List<List<?>> analysisReport = null;
 		ReportDto reportDto = null;
 		List<ReportDto> reportDtos = new ArrayList<>();
+		if(type.equals("weekly"))
 		analysisReport = policyRepository.findAnalysisReport();
+		else if (type.equals("monthly")) {
+		analysisReport = policyRepository.findAnalysisReportMonthly();	
+		}
 
 		for (List<?> objs : analysisReport) {
 			reportDto = new ReportDto();
-			reportDto.setPolicyCount(String.valueOf(objs.get(0)));
-			reportDto.setPolicyId(String.valueOf(objs.get(1)));
+			reportDto.setPolicyId(String.valueOf(objs.get(0)));
+			reportDto.setPolicyCount(String.valueOf(objs.get(1)));
 			reportDto.setPolicyPercentage(String.valueOf(objs.get(2)));
 			reportDtos.add(reportDto);
 		}  
