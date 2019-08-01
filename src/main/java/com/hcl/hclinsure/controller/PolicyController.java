@@ -1,6 +1,7 @@
 package com.hcl.hclinsure.controller;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,11 @@ import com.hcl.hclinsure.serviceimpl.CustomerPolicyServiceImpl;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PolicyController {
 
+	private static final String FILE_PATH = "c:\\mypdf.pdf";
 	@Autowired
 	CustomerPolicyServiceImpl customerServicePolicyImpl;
 	
-	@RequestMapping(value = "/statement/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
+	@GetMapping(value = "/statement/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> policiesReport(@PathVariable long id) {
 
         List<CustomerPolicyDto> list = customerServicePolicyImpl.getCustomerPolicyList(id);
@@ -38,13 +40,11 @@ public class PolicyController {
         ByteArrayInputStream bis = customerServicePolicyImpl.policyReport(list);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=PoliciesReport.pdf");
+        headers.add("Content-Disposition", "attachment; filename=\"userreport.pdf\"");
 
-        return ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(bis));
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+        		.body(new InputStreamResource(bis));
+          
     }
 
 	
